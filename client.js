@@ -17,6 +17,16 @@ const connect = () => {
   });
   conn.setEncoding("utf8");
   return conn;
+
+  //setInterval (()=>{ 
+    //Client.write("Move: right");
+    //}, 50);
+    //setInterval (()=>{ 
+     // Client.write("Move: left");
+     // }, 100);
+     // setInterval (()=>{ 
+      //  Client.write("Move: up");
+      //  }, 150);
 };
 console.log("Connecting ...");
 connect();
