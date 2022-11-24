@@ -1,34 +1,42 @@
 const net = require('net');
+const { IP, PORT } = require('./constants');
 
-
-const port = 50541;
-const host = "192.168.68.247";
+const port = PORT;
+const host = IP;
 const connectionConfig = {
   host,
   port
 };
 //establishes connection with game server
 // 2.tcp.ngrok.io:12350
-const connect = () => {
-
+const connect = function() {
   const conn = net.createConnection(connectionConfig);
-  conn.on('data', (message) => {
-    console.log(message);
-  });
-  conn.setEncoding("utf8");
-  return conn;
 
-  //setInterval (()=>{ 
-    //Client.write("Move: right");
-    //}, 50);
-    //setInterval (()=>{ 
-     // Client.write("Move: left");
-     // }, 100);
-     // setInterval (()=>{ 
-      //  Client.write("Move: up");
-      //  }, 150);
+  //Update the connect function to handle incoming data and console.log it for the player.
+  conn.on("data", (message) => {
+    console.log("Server says: ", message);
+  });
+  conn.on("connect", (message) => {
+    console.log("Successfully connected to the game server.");
+    conn.write("Name: AMI");
+    
+
+  });
+  // interpret incoming data as text
+  conn.setEncoding("utf8");
+
+  return conn;
 };
 console.log("Connecting ...");
 connect();
 
-module.exports = { connectionConfig };
+module.exports = { connect };
+  //setInterval (()=>{
+  //Client.write("Move: right");
+  //}, 50);
+  //setInterval (()=>{
+  // Client.write("Move: left");
+  // }, 100);
+  // setInterval (()=>{
+  //  Client.write("Move: up");
+  //  }, 150);
