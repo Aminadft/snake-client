@@ -2,7 +2,7 @@ const net = require('net');
 
 
 const port = 50541;
-const host = "192.168.68.247 .168.139";
+const host = "192.168.68.247";
 const connectionConfig = {
   host,
   port
@@ -31,4 +31,4 @@ const connect = () => {
 console.log("Connecting ...");
 connect();
 
-module.exports = { connect };
+module.exports = { connectionConfig };
